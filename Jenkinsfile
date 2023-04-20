@@ -4,16 +4,31 @@ pipeline {
        stage('Build Code') {
            steps {
                sh """
-               echo "Building Artifact"
-               """
+               echo "Building Artifact for project samplewebapp"
+			   """
+               
            }
        }
-      stage('Deploy Code') {
+       stage('Reading branch wise')
+       {
+       when
+       {
+       branch "prod*"
+       }
+       steps
+       {
+       echo " It is only for prod branch"
+       }
+       }
+
+       stage('Deploy Code') {
+	   
           steps {
                sh """
                echo "Deploying Code"
-               """
+			   """
+               
           }
       }
-   }
-}
+      }
+      }
